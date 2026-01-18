@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -44,10 +46,18 @@ public class UserModel implements Serializable {
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    //@CreationTimestamp
+    //As anotações @CreationTimestamp e @UpdateTimestamp evitam as duas linhas a seguir
+    // userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
+    // userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
     private LocalDateTime creationDate;
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    //@UpdateTimestamp
+    //As anotações @CreationTimestamp e @UpdateTimestamp evitam as duas linhas a seguir
+    // userModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
+    // userModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
     private LocalDateTime lastUpdateDate;
 
     @Enumerated(EnumType.STRING)
