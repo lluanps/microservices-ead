@@ -20,7 +20,7 @@ public class UserModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID userId;
+    private UUID id;
 
     @Column(nullable = false, unique = true, length = 50)
     private String username;
@@ -48,7 +48,7 @@ public class UserModel implements Serializable {
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime lasUpdateDAte;
+    private LocalDateTime lastUpdateDate;
 
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
