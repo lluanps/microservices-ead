@@ -33,12 +33,12 @@ public class ModuleModel implements Serializable {
 
     // https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonProperty.Access.html
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private CourseModel course;
 
     // https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonProperty.Access.html
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "modules")
+    @OneToMany(mappedBy = "modules", fetch = FetchType.LAZY)
     private Set<LessonModel> lessons;
 
 }

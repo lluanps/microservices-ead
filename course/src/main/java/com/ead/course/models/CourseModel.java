@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -54,7 +56,8 @@ public class CourseModel implements Serializable {
 
     // https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonProperty.Access.html
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)// Relacionamento 1:N com ModuleModel, mapeado pelo atributo "course" e carregado sob demanda
+    @Fetch(FetchMode.SUBSELECT)// Evita múltiplas queries (N+1) buscando os filhos em uma subquery única
     private Set<ModuleModel> modules;
 
 }
