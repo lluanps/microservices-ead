@@ -57,7 +57,9 @@ public class CourseModel implements Serializable {
     // https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonProperty.Access.html
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)// Relacionamento 1:N com ModuleModel, mapeado pelo atributo "course" e carregado sob demanda
+    //@OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL)//
     @Fetch(FetchMode.SUBSELECT)// Evita múltiplas queries (N+1) buscando os filhos em uma subquery única
+    //@OnDelete(action = OnDeleteAction.CASCADE)// delega para o banco de dados fazer a remoção dos modules vinculados (dependendo do volume pode piorar a perfomance, e não a controle direto no que esta sendo deletado)
     private Set<ModuleModel> modules;
 
 }
