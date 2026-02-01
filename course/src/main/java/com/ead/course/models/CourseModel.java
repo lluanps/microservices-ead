@@ -52,7 +52,7 @@ public class CourseModel implements Serializable {
     private CourseLevel courseLevel;
 
     @Column(nullable = false)
-    private UUID courseInstructor;
+    private UUID userInstructor;
 
     // https://fasterxml.github.io/jackson-annotations/javadoc/2.6/com/fasterxml/jackson/annotation/JsonProperty.Access.html
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

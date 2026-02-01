@@ -30,7 +30,7 @@ public class CourseDTO {
     private CourseStatus courseStatus;
 
     @NotNull
-    private UUID courseInstructor;
+    private UUID userInstructor;
 
     @NotNull
     private CourseLevel courseLevel;
